@@ -1,20 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./screens/HomeScreen";
+import TrailerScreen from "./screens/TrailerScreen";
+import ActionScreen from "./screens/ActionScreen";
+import HorrorScreen from "./screens/HorrorScreen";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: "#6200ea" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      >
+        {/* Home Screen */}
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: "Trai-Film" }}
+        />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        {/* Action Screen */}
+        <Stack.Screen
+          name="ActionScreen"
+          component={ActionScreen}
+          options={{ title: "Action Movies" }}
+        />
+
+        {/* Horror Screen */}
+        <Stack.Screen
+          name="HorrorScreen"
+          component={HorrorScreen}
+          options={{ title: "Horror Movies" }}
+        />
+
+        {/* Trailer Screen */}
+        <Stack.Screen
+          name="TrailerScreen"
+          component={TrailerScreen}
+          
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
